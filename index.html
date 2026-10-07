@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Saya</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-color: #1677ff;
+            --primary-dark: #0b5ed7;
+            --bg-dark: #ffffff;
+            --bg-card: #f4f9ff;
+            --text-color: #12304a;
+            --text-secondary: #1677ff;
+            --light-blue: #dceeff;
+            --border-blue: #b9dcff;
+        }
+
+        body {
+            background: #ffffff;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-blue);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-secondary);
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content h3 {
+            font-size: 24px;
+            color: var(--text-secondary);
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .hero-content h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--text-secondary);
+        }
+
+        .hero-content p {
+            color: #557089;
+            margin-bottom: 30px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 0 25px rgba(0, 102, 255, 0.7);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+
+        /* =====================================================
+           ANIMASI FOTO PROFIL
+        ===================================================== */
+
+        .hero-img {
+            position: relative;
+            width: 370px;
+            height: 370px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Lingkaran biru-putih berputar */
+
+        .hero-img::before {
+            content: "";
+
+            position: absolute;
+
+            width: 345px;
+            height: 345px;
+
+            border-radius: 50%;
+
+            background: conic-gradient(from 0deg,
+                    #1677ff,
+                    #ffffff,
+                    #1677ff,
+                    #0b5ed7,
+                    #ffffff,
+                    #1677ff);
+
+            animation: rotateBorder 5s linear infinite;
+
+            z-index: 0;
+
+            box-shadow:
+                0 0 15px rgba(22, 119, 255, 0.5),
+                0 0 35px rgba(22, 119, 255, 0.25);
+        }
+
+        /* Bagian putih di tengah */
+
+        .hero-img::after {
+            content: "";
+
+            position: absolute;
+
+            width: 333px;
+            height: 333px;
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            z-index: 1;
+        }
+
+        /* Kotak foto */
+
+        .hero-img .img-box {
+            width: 320px;
+            height: 320px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+
+            border: 4px solid #ffffff;
+
+            position: relative;
+
+            z-index: 2;
+
+            animation: floatingPhoto 3s ease-in-out infinite;
+
+            box-shadow:
+                0 0 20px rgba(22, 119, 255, 0.5),
+                0 0 45px rgba(22, 119, 255, 0.25);
+        }
+
+        /* Foto */
+
+        .hero-img img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 0.5s ease;
+        }
+
+        /* Foto membesar ketika mouse diarahkan */
+
+        .hero-img .img-box:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Animasi foto naik turun */
+
+        @keyframes floatingPhoto {
+
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+
+        }
+
+        /* Animasi lingkaran berputar */
+
+        @keyframes rotateBorder {
+
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* ================= SECTION ================= */
+
+        section {
+            padding: 80px 8%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section:nth-of-type(even) {
+            background: #eef7ff;
+        }
+
+        section:nth-of-type(odd) {
+            background: #ffffff;
+        }
+
+        section:nth-of-type(even)::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+
+            background:
+                linear-gradient(135deg, #1677ff 25%, transparent 25%) -10px 0,
+                linear-gradient(225deg, #1677ff 25%, transparent 25%) -10px 0;
+
+            background-size: 20px 8px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: var(--text-secondary);
+        }
+
+
+        /* ================= ABOUT ================= */
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+
+            background: linear-gradient(145deg, #ffffff, #f1f8ff);
+
+            padding: 40px;
+            border-radius: 15px;
+
+            border: 1px solid var(--border-blue);
+        }
+
+
+        /* ================= SKILLS ================= */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: linear-gradient(145deg, #ffffff, #f1f8ff);
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            transition: 0.3s;
+
+            border: 1px solid var(--border-blue);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+
+            border-color: var(--primary-color);
+
+            box-shadow:
+                0 10px 20px rgba(0, 102, 255, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 45px;
+
+            color: var(--text-secondary);
+
+            margin-bottom: 15px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            font-size: 14px;
+            color: #557089;
+        }
+
+
+        /* ================= EDUCATION ================= */
+
+        .education-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+
+            max-width: 900px;
+
+            margin: 0 auto;
+        }
+
+        .education-card {
+            overflow: hidden;
+
+            padding: 0;
+
+            background: #ffffff;
+
+            border-radius: 15px;
+
+            border: 1px solid var(--border-blue);
+
+            box-shadow:
+                0 8px 25px rgba(22, 119, 255, 0.08);
+
+            transition: 0.3s;
+
+            position: relative;
+        }
+
+        .education-card:hover {
+            transform: translateY(-8px);
+
+            border-color: var(--primary-color);
+
+            box-shadow:
+                0 12px 28px rgba(22, 119, 255, 0.16);
+        }
+
+        .education-img {
+            width: 50%;
+            height: 150px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .education-body {
+            padding: 24px 26px 28px;
+        }
+
+        .education-card h3 {
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .education-card .year {
+            color: var(--primary-color);
+
+            font-weight: 600;
+
+            margin-bottom: 10px;
+        }
+
+        .education-card p {
+            color: #557089;
+            font-size: 14px;
+        }
+
+
+        /* ================= KELUARGA ================= */
+
+        .family-container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .family-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 35px;
+
+            background:
+                linear-gradient(145deg, #ffffff, #f1f8ff);
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            border: 1px solid var(--border-blue);
+
+            box-shadow:
+                0 10px 30px rgba(22, 119, 255, 0.12);
+
+            transition: 0.3s;
+        }
+
+        .family-card:hover {
+            transform: translateY(-7px);
+
+            border-color: var(--primary-color);
+
+            box-shadow:
+                0 15px 35px rgba(22, 119, 255, 0.20);
+        }
+
+        .family-img {
+            width: 400px;
+            height: 280px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+
+            border: 4px solid #dceeff;
+        }
+
+        .family-img img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .family-info {
+            flex: 1;
+        }
+
+        .family-info h3 {
+            font-size: 28px;
+
+            color: var(--primary-color);
+
+            margin-bottom: 15px;
+        }
+
+        .family-info>p {
+            color: #557089;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .family-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+        .family-member {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            background: #ffffff;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            border: 1px solid var(--border-blue);
+        }
+
+        .family-member i {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: var(--light-blue);
+
+            color: var(--primary-color);
+
+            border-radius: 50%;
+
+            flex-shrink: 0;
+        }
+
+        .family-member strong {
+            color: var(--text-color);
+
+            display: block;
+        }
+
+        .family-member small {
+            color: #557089;
+        }
+
+
+        /* ================= PROJECT ================= */
+
+        .projects-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 30px;
+        }
+
+        .project-card {
+            background:
+                linear-gradient(145deg, #ffffff, #f1f8ff);
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            transition: 0.3s;
+
+            border: 1px solid var(--border-blue);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 10px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .project-img img {
+            width: 100%;
+
+            height: 200px;
+
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            color: #557089;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= CONTACT ================= */
+
+        .contact-container {
+            text-align: center;
+
+            background:
+                linear-gradient(145deg, #ffffff, #f1f8ff);
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            padding: 40px;
+
+            border-radius: 15px;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            color: var(--primary-color);
+
+            margin-right: 10px;
+        }
+
+        .socials {
+            margin-top: 30px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(180px, 1fr));
+
+            gap: 15px;
+        }
+
+        .social-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 14px 18px;
+
+            background: #ffffff;
+
+            border: 1px solid var(--border-blue);
+
+            border-radius: 14px;
+
+            text-decoration: none;
+
+            color: var(--text-color);
+
+            transition: 0.3s;
+
+            box-shadow:
+                0 6px 18px rgba(22, 119, 255, 0.08);
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+
+            border-color: var(--primary-color);
+
+            box-shadow:
+                0 10px 24px rgba(22, 119, 255, 0.16);
+        }
+
+        .social-card img {
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+
+            flex-shrink: 0;
+        }
+
+        .social-card strong {
+            display: block;
+
+            color: var(--text-color);
+
+            font-size: 16px;
+        }
+
+        .social-card span {
+            display: block;
+
+            color: #557089;
+
+            font-size: 13px;
+
+            margin-top: 2px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+
+            padding: 20px;
+
+            background-color: #eaf4ff;
+
+            font-size: 14px;
+
+            color: #557089;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links li {
+                margin: 5px 10px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+
+                justify-content: center;
+
+                text-align: center;
+
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+
+            /* FOTO PROFIL MOBILE */
+
+            .hero-img {
+                width: 290px;
+                height: 290px;
+            }
+
+            .hero-img::before {
+                width: 255px;
+                height: 255px;
+            }
+
+            .hero-img::after {
+                width: 243px;
+                height: 243px;
+            }
+
+            .hero-img .img-box {
+                width: 230px;
+                height: 230px;
+            }
+
+
+            .family-card {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .family-img {
+                width: 100%;
+
+                max-width: 400px;
+
+                height: 240px;
+            }
+
+            .family-member {
+                text-align: left;
+            }
+
+            .socials {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            epyul<span>Portofolio</span>
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="#home">Beranda</a>
+            </li>
+
+            <li>
+                <a href="#about">Tentang</a>
+            </li>
+
+            <li>
+                <a href="#skills">Keahlian</a>
+            </li>
+
+            <li>
+                <a href="#education">Pendidikan</a>
+            </li>
+
+            <li>
+                <a href="#family">Keluarga</a>
+            </li>
+
+            <li>
+                <a href="#projects">Proyek</a>
+            </li>
+
+            <li>
+                <a href="#contact">Kontak</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ================= BERANDA ================= -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h3>
+                Halo, Saya 👋
+            </h3>
+
+            <h1>
+                Saepul Abdul Rijki
+            </h1>
+
+            <h2>
+                Web Developer &
+                <span class="highlight">
+                    UI/UX Designer
+                </span>
+            </h2>
+
+            <p>
+                Saya berfokus pada pembuatan website yang modern,
+                responsif, dan mudah digunakan.
+            </p>
+
+            <div class="btn-group">
+
+                <a href="#contact" class="btn btn-primary">
+                    Hubungi Saya
+                </a>
+
+                <a href="#projects" class="btn btn-secondary">
+                    Lihat Karya
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOTO PROFIL DENGAN ANIMASI -->
+
+        <div class="hero-img">
+
+            <div class="img-box">
+
+                <img src="assets/img/pororo.jpg" alt="Foto Profil">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TENTANG ================= -->
+
+    <section id="about" class="about">
+
+        <h2 class="section-title">
+            Tentang <span>Saya</span>
+        </h2>
+
+        <div class="about-content">
+
+            <p>
+                Aku adalah seorang siswa SMKN 1 RONGGA saya memilih
+                jurusan RPL karena suka bermain codingan yang sangat
+                rumit seperti hidup saya. Saya juga memilih RPL karena
+                pemikiran saya setelah keluar sekolah bisa langsung
+                kerja. Tapi ternyata sesudah mendalami RPL, RPL itu
+                ternyata rumit juga. Untungnya saya suka dengan yang
+                rumit-rumit 😂😢😊.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= KEAHLIAN ================= -->
+
+    <section id="skills" class="skills">
+
+        <h2 class="section-title">
+            Keahlian <span>Saya</span>
+        </h2>
+
+        <div class="skills-grid">
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-html5"></i>
+
+                <h3>
+                    HTML5 & CSS3
+                </h3>
+
+                <p>
+                    Desain web responsif & tata letak modern
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-js"></i>
+
+                <h3>
+                    JavaScript
+                </h3>
+
+                <p>
+                    Interaktivitas & dinamika web
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-react"></i>
+
+                <h3>
+                    React JS
+                </h3>
+
+                <p>
+                    Pengembangan frontend skala modern
+                </p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-solid fa-paintbrush"></i>
+
+                <h3>
+                    UI/UX Design
+                </h3>
+
+                <p>
+                    Wireframing, prototyping & Figma
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PENDIDIKAN ================= -->
+
+    <section id="education" class="education">
+
+        <h2 class="section-title">
+            Pendidikan <span>Saya</span>
+        </h2>
+
+        <div class="education-grid">
+
+
+            <div class="education-card">
+
+                <img class="education-img" src="assets/img/sd.jpg" alt="Foto ilustrasi gedung SD">
+
+                <div class="education-body">
+
+                    <h3>
+                        SDN 47 KODO KOTA BIMA
+                    </h3>
+
+                    <div class="year">
+                        Sekolah Dasar
+                    </div>
+
+                    <p>
+                        Pendidikan dasar yang menjadi awal perjalanan
+                        saya dalam menuntut ilmu.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <img class="education-img" src="assets/img/smp jakarta.png" alt="Foto ilustrasi gedung SMP">
+
+                <div class="education-body">
+
+                    <h3>
+                        SMPN 126 Jakarta
+                    </h3>
+
+                    <div class="year">
+                        Sekolah Menengah Pertama
+                    </div>
+
+                    <p>
+                        Pendidikan menengah pertama sebagai tahap
+                        lanjutan dalam perjalanan pendidikan saya.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="education-card">
+
+                <img class="education-img" src="assets/img/LOGO SMKN 1 RONGGA.jpg" alt="Foto SMK Negeri 1 Rongga">
+
+                <div class="education-body">
+
+                    <h3>
+                        SMKN 1 RONGGA
+                    </h3>
+
+                    <div class="year">
+                        Rekayasa Perangkat Lunak (RPL)
+                    </div>
+
+                    <p>
+                        Saya melanjutkan pendidikan di SMK 1 RONGGA
+                        dengan mengambil jurusan Rekayasa Perangkat
+                        Lunak (RPL).
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= KELUARGA ================= -->
+
+    <section id="family" class="family">
+
+        <h2 class="section-title">
+            Keluarga <span>Saya</span>
+        </h2>
+
+        <div class="family-container">
+
+            <div class="family-card">
+
+                <div class="family-img">
+
+                    <img src="assets/img/pow pow.jpeg" alt="Foto Keluarga">
+
+                </div>
+
+
+                <div class="family-info">
+
+                    <h3>
+                        👨‍👩‍👧‍👦 Keluarga Saya
+                    </h3>
+
+                    <p>
+                        Keluarga adalah orang-orang yang selalu
+                        memberikan dukungan, semangat, dan motivasi
+                        kepada saya dalam menjalani pendidikan dan
+                        mencapai cita-cita.
+                    </p>
+
+
+                    <div class="family-list">
+
+
+                        <div class="family-member">
+
+                            <i class="fa-solid fa-person"></i>
+
+                            <div>
+
+                                <strong>
+                                    Ayah
+                                </strong>
+
+                                <small>
+                                    Sosok yang selalu memberikan
+                                    dukungan dan semangat.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="family-member">
+
+                            <i class="fa-solid fa-person-dress"></i>
+
+                            <div>
+
+                                <strong>
+                                    Ibu
+                                </strong>
+
+                                <small>
+                                    Sosok yang selalu memberikan
+                                    kasih sayang dan motivasi.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="family-member">
+
+                            <i class="fa-solid fa-people-roof"></i>
+
+                            <div>
+
+                                <strong>
+                                    Saudara
+                                </strong>
+
+                                <small>
+                                    Teman berbagi cerita dan pengalaman
+                                    dalam keluarga.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PROYEK ================= -->
+
+    <section id="projects" class="projects">
+
+        <h2 class="section-title">
+            Proyek <span>Terbaru</span>
+        </h2>
+
+        <div class="projects-grid">
+
+
+            <div class="project-card">
+
+                <div class="project-img">
+
+                    <img src="assets/img/novel khusus untuk ayah.png" alt="Proyek Toko Buku">
+
+                </div>
+
+                <div class="project-info">
+
+                    <h3>
+                        Toko Buku 📚📖
+                    </h3>
+
+                    <p>
+                        Platform toko online lengkap dengan sistem
+                        keranjang dan checkout.
+                    </p>
+
+                    <a href="#" class="project-link">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        Lihat Detail
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="project-card">
+
+                <div class="project-img">
+
+                    <img src="assets/img/RASTHA.jpeg" alt="proyek Koleksi foto">
+
+                </div>
+
+                <div class="project-info">
+
+                    <h3>
+                        Koleksi foto📷
+                    </h3>
+
+                    <p>
+                        Website kolase photo modern dan koleksi
+                        photo estetic.
+                    </p>
+
+                    <a href="#" class="project-link">
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        Lihat Detail
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= KONTAK ================= -->
+
+    <section id="contact" class="contact">
+
+        <h2 class="section-title">
+            Hubungi <span>Saya</span>
+        </h2>
+
+        <div class="contact-container">
+
+            <div class="contact-info">
+
+
+                <p>
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    email@saepulabdul.com
+
+                </p>
+
+
+                <p>
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    +62 831 9011 2974
+
+                </p>
+
+
+                <p>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Bandung, Indonesia
+
+                </p>
+
+
+                <div class="socials">
+
+
+                    <a href="https://www.instagram.com/its.rizz.1?stkn=MWpna211cGFwbDFpNw==/" target="_blank"
+                        rel="noopener noreferrer" class="social-card">
+
+                        <img src="assets/img/Instagram_icon.png" alt="Instagram">
+
+                        <div>
+
+                            <strong>
+                                Instagram
+                            </strong>
+
+                            <span>
+                                @its.rizz.1
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="https://wa.me/6283190112974" target="_blank" rel="noopener noreferrer" class="social-card">
+
+                        <img src="assets/img/wa.jpg" alt="WhatsApp">
+
+                        <div>
+
+                            <strong>
+                                WhatsApp
+                            </strong>
+
+                            <span>
+                                +62 831 9011 2974
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="https://www.tiktok.com/@_jul347?_r=1&_t=ZS-9A9gJn1eO9N" target="_blank"
+                        rel="noopener noreferrer" class="social-card">
+
+                        <img src="assets/img/logo toktok.avif" alt="TikTok">
+
+                        <div>
+
+                            <strong>
+                                TikTok
+                            </strong>
+
+                            <span>
+                                @mek
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="https://t.me/saepul" target="_blank" rel="noopener noreferrer" class="social-card">
+
+                        <img src="assets/img/twitter-logo_1080029-97.avif" alt="Telegram">
+
+                        <div>
+
+                            <strong>
+                                Telegram
+                            </strong>
+
+                            <span>
+                                @saepul
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 Saepul Abdul Rijki. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
