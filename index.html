@@ -1,3 +1,6 @@
+Berikut adalah kode HTML lengkap milikmu yang sudah diperbarui dengan efek **background gelombang gelembung (animated bubbles/blobs)** yang bergerak melayang secara halus di latar belakang, memberikan kesan unik, lucu, dan interaktif:
+
+```html
 <!DOCTYPE html>
 <html lang="id">
 
@@ -30,9 +33,100 @@
         }
 
         body {
-            background: #ffffff;
+            background-color: #f0f7ff;
             color: var(--text-color);
             line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ================= BACKGROUND GELEMBUNG LUCU ================= */
+        .bubbles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            background: linear-gradient(135deg, rgba(22, 119, 255, 0.25), rgba(185, 220, 255, 0.35));
+            animation: floatBubble 12s infinite ease-in-out, morphBubble 8s infinite alternate ease-in-out;
+            backdrop-filter: blur(8px);
+        }
+
+        .bubble:nth-child(1) {
+            width: 280px;
+            height: 280px;
+            top: 10%;
+            left: -50px;
+            animation-duration: 14s, 6s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 220px;
+            height: 220px;
+            top: 45%;
+            right: -40px;
+            animation-duration: 18s, 9s;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 180px;
+            height: 180px;
+            bottom: 15%;
+            left: 15%;
+            animation-duration: 16s, 7s;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 320px;
+            height: 320px;
+            top: 70%;
+            right: 20%;
+            animation-duration: 20s, 10s;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 150px;
+            height: 150px;
+            top: 25%;
+            left: 60%;
+            animation-duration: 13s, 5s;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-40px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(360deg);
+            }
+        }
+
+        @keyframes morphBubble {
+            0% {
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            }
+            50% {
+                border-radius: 60% 40% 30% 70% / 50% 30% 70% 40%;
+            }
+            100% {
+                border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%;
+            }
         }
 
 
@@ -43,12 +137,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.85);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--border-blue);
         }
 
@@ -159,32 +253,23 @@
         }
 
 
-        /* =====================================================
-           ANIMASI FOTO PROFIL
-        ===================================================== */
+        /* ================= ANIMASI FOTO PROFIL ================= */
 
         .hero-img {
             position: relative;
             width: 370px;
             height: 370px;
-
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Lingkaran biru-putih berputar */
-
         .hero-img::before {
             content: "";
-
             position: absolute;
-
             width: 345px;
             height: 345px;
-
             border-radius: 50%;
-
             background: conic-gradient(from 0deg,
                     #1677ff,
                     #ffffff,
@@ -192,103 +277,57 @@
                     #0b5ed7,
                     #ffffff,
                     #1677ff);
-
             animation: rotateBorder 5s linear infinite;
-
             z-index: 0;
-
             box-shadow:
                 0 0 15px rgba(22, 119, 255, 0.5),
                 0 0 35px rgba(22, 119, 255, 0.25);
         }
 
-        /* Bagian putih di tengah */
-
         .hero-img::after {
             content: "";
-
             position: absolute;
-
             width: 333px;
             height: 333px;
-
             border-radius: 50%;
-
             background: #ffffff;
-
             z-index: 1;
         }
-
-        /* Kotak foto */
 
         .hero-img .img-box {
             width: 320px;
             height: 320px;
-
             border-radius: 50%;
-
             overflow: hidden;
-
             border: 4px solid #ffffff;
-
             position: relative;
-
             z-index: 2;
-
             animation: floatingPhoto 3s ease-in-out infinite;
-
             box-shadow:
                 0 0 20px rgba(22, 119, 255, 0.5),
                 0 0 45px rgba(22, 119, 255, 0.25);
         }
 
-        /* Foto */
-
         .hero-img img {
             width: 100%;
             height: 100%;
-
             object-fit: cover;
-
             transition: transform 0.5s ease;
         }
-
-        /* Foto membesar ketika mouse diarahkan */
 
         .hero-img .img-box:hover img {
             transform: scale(1.08);
         }
 
-        /* Animasi foto naik turun */
-
         @keyframes floatingPhoto {
-
-            0% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-
-            100% {
-                transform: translateY(0px);
-            }
-
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
-        /* Animasi lingkaran berputar */
-
         @keyframes rotateBorder {
-
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
 
@@ -301,11 +340,12 @@
         }
 
         section:nth-of-type(even) {
-            background: #eef7ff;
+            background: rgba(238, 247, 255, 0.5);
+            backdrop-filter: blur(4px);
         }
 
         section:nth-of-type(odd) {
-            background: #ffffff;
+            background: transparent;
         }
 
         section:nth-of-type(even)::before {
@@ -315,11 +355,9 @@
             left: 0;
             width: 100%;
             height: 8px;
-
             background:
                 linear-gradient(135deg, #1677ff 25%, transparent 25%) -10px 0,
                 linear-gradient(225deg, #1677ff 25%, transparent 25%) -10px 0;
-
             background-size: 20px 8px;
         }
 
@@ -340,12 +378,10 @@
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
-
-            background: linear-gradient(145deg, #ffffff, #f1f8ff);
-
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
             padding: 40px;
             border-radius: 15px;
-
             border: 1px solid var(--border-blue);
         }
 
@@ -359,33 +395,24 @@
         }
 
         .skill-card {
-            background: linear-gradient(145deg, #ffffff, #f1f8ff);
-
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
             padding: 30px;
-
             border-radius: 12px;
-
             text-align: center;
-
             transition: 0.3s;
-
             border: 1px solid var(--border-blue);
         }
 
         .skill-card:hover {
             transform: translateY(-10px);
-
             border-color: var(--primary-color);
-
-            box-shadow:
-                0 10px 20px rgba(0, 102, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2);
         }
 
         .skill-card i {
             font-size: 45px;
-
             color: var(--text-secondary);
-
             margin-bottom: 15px;
         }
 
@@ -403,51 +430,34 @@
 
         .education-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(280px, 1fr));
-
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-
             max-width: 900px;
-
             margin: 0 auto;
         }
 
         .education-card {
             overflow: hidden;
-
             padding: 0;
-
-            background: #ffffff;
-
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
             border-radius: 15px;
-
             border: 1px solid var(--border-blue);
-
-            box-shadow:
-                0 8px 25px rgba(22, 119, 255, 0.08);
-
+            box-shadow: 0 8px 25px rgba(22, 119, 255, 0.08);
             transition: 0.3s;
-
             position: relative;
         }
 
         .education-card:hover {
             transform: translateY(-8px);
-
             border-color: var(--primary-color);
-
-            box-shadow:
-                0 12px 28px rgba(22, 119, 255, 0.16);
+            box-shadow: 0 12px 28px rgba(22, 119, 255, 0.16);
         }
 
         .education-img {
             width: 50%;
             height: 150px;
-
             object-fit: cover;
-
             display: block;
         }
 
@@ -462,9 +472,7 @@
 
         .education-card .year {
             color: var(--primary-color);
-
             font-weight: 600;
-
             margin-bottom: 10px;
         }
 
@@ -483,52 +491,35 @@
 
         .family-card {
             display: flex;
-
             align-items: center;
-
             gap: 35px;
-
-            background:
-                linear-gradient(145deg, #ffffff, #f1f8ff);
-
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
             padding: 30px;
-
             border-radius: 20px;
-
             border: 1px solid var(--border-blue);
-
-            box-shadow:
-                0 10px 30px rgba(22, 119, 255, 0.12);
-
+            box-shadow: 0 10px 30px rgba(22, 119, 255, 0.12);
             transition: 0.3s;
         }
 
         .family-card:hover {
             transform: translateY(-7px);
-
             border-color: var(--primary-color);
-
-            box-shadow:
-                0 15px 35px rgba(22, 119, 255, 0.20);
+            box-shadow: 0 15px 35px rgba(22, 119, 255, 0.20);
         }
 
         .family-img {
             width: 400px;
             height: 280px;
-
             border-radius: 18px;
-
             overflow: hidden;
-
             flex-shrink: 0;
-
             border: 4px solid #dceeff;
         }
 
         .family-img img {
             width: 100%;
             height: 100%;
-
             object-fit: cover;
         }
 
@@ -538,65 +529,46 @@
 
         .family-info h3 {
             font-size: 28px;
-
             color: var(--primary-color);
-
             margin-bottom: 15px;
         }
 
         .family-info>p {
             color: #557089;
-
             font-size: 15px;
-
             margin-bottom: 20px;
         }
 
         .family-list {
             display: flex;
-
             flex-direction: column;
-
             gap: 12px;
         }
 
         .family-member {
             display: flex;
-
             align-items: center;
-
             gap: 12px;
-
             background: #ffffff;
-
             padding: 12px 15px;
-
             border-radius: 10px;
-
             border: 1px solid var(--border-blue);
         }
 
         .family-member i {
             width: 38px;
             height: 38px;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
             background: var(--light-blue);
-
             color: var(--primary-color);
-
             border-radius: 50%;
-
             flex-shrink: 0;
         }
 
         .family-member strong {
             color: var(--text-color);
-
             display: block;
         }
 
@@ -609,38 +581,27 @@
 
         .projects-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(300px, 1fr));
-
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
         .project-card {
-            background:
-                linear-gradient(145deg, #ffffff, #f1f8ff);
-
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
             border-radius: 15px;
-
             overflow: hidden;
-
             transition: 0.3s;
-
             border: 1px solid var(--border-blue);
         }
 
         .project-card:hover {
             transform: translateY(-8px);
-
-            box-shadow:
-                0 10px 20px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
         }
 
         .project-img img {
             width: 100%;
-
             height: 200px;
-
             object-fit: cover;
         }
 
@@ -654,19 +615,14 @@
 
         .project-info p {
             color: #557089;
-
             font-size: 14px;
-
             margin-bottom: 15px;
         }
 
         .project-link {
             color: var(--text-secondary);
-
             text-decoration: none;
-
             font-weight: 600;
-
             font-size: 14px;
         }
 
@@ -675,17 +631,13 @@
 
         .contact-container {
             text-align: center;
-
-            background:
-                linear-gradient(145deg, #ffffff, #f1f8ff);
-
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
             max-width: 600px;
-
             margin: 0 auto;
-
             padding: 40px;
-
             border-radius: 15px;
+            border: 1px solid var(--border-blue);
         }
 
         .contact-info p {
@@ -695,79 +647,53 @@
 
         .contact-info i {
             color: var(--primary-color);
-
             margin-right: 10px;
         }
 
         .socials {
             margin-top: 30px;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(180px, 1fr));
-
+            grid-template-columns: repeat(2, minmax(180px, 1fr));
             gap: 15px;
         }
 
         .social-card {
             display: flex;
-
             align-items: center;
-
             gap: 14px;
-
             padding: 14px 18px;
-
             background: #ffffff;
-
             border: 1px solid var(--border-blue);
-
             border-radius: 14px;
-
             text-decoration: none;
-
             color: var(--text-color);
-
             transition: 0.3s;
-
-            box-shadow:
-                0 6px 18px rgba(22, 119, 255, 0.08);
+            box-shadow: 0 6px 18px rgba(22, 119, 255, 0.08);
         }
 
         .social-card:hover {
             transform: translateY(-5px);
-
             border-color: var(--primary-color);
-
-            box-shadow:
-                0 10px 24px rgba(22, 119, 255, 0.16);
+            box-shadow: 0 10px 24px rgba(22, 119, 255, 0.16);
         }
 
         .social-card img {
             width: 48px;
             height: 48px;
-
             object-fit: contain;
-
             flex-shrink: 0;
         }
 
         .social-card strong {
             display: block;
-
             color: var(--text-color);
-
             font-size: 16px;
         }
 
         .social-card span {
             display: block;
-
             color: #557089;
-
             font-size: 13px;
-
             margin-top: 2px;
         }
 
@@ -776,13 +702,9 @@
 
         footer {
             text-align: center;
-
             padding: 20px;
-
-            background-color: #eaf4ff;
-
+            background-color: rgba(234, 244, 255, 0.8);
             font-size: 14px;
-
             color: #557089;
         }
 
@@ -807,11 +729,8 @@
 
             .hero {
                 flex-direction: column-reverse;
-
                 justify-content: center;
-
                 text-align: center;
-
                 gap: 40px;
             }
 
@@ -822,9 +741,6 @@
             .btn-group {
                 justify-content: center;
             }
-
-
-            /* FOTO PROFIL MOBILE */
 
             .hero-img {
                 width: 290px;
@@ -846,18 +762,14 @@
                 height: 230px;
             }
 
-
             .family-card {
                 flex-direction: column;
-
                 text-align: center;
             }
 
             .family-img {
                 width: 100%;
-
                 max-width: 400px;
-
                 height: 240px;
             }
 
@@ -877,13 +789,22 @@
 
 <body>
 
+    <!-- CONTAINER GELEMBUNG BACKGROUND -->
+    <div class="bubbles-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
 
     <!-- ================= NAVBAR ================= -->
 
     <nav class="navbar">
 
         <div class="logo">
-            saepul<span>Portofolio</span>
+            epyul<span>Portofolio</span>
         </div>
 
         <ul class="nav-links">
@@ -968,7 +889,7 @@
 
             <div class="img-box">
 
-                <img src="img/pull.jpeg" alt="Foto Profil">
+                <img src="assets/img/pororo.jpg" alt="Foto Profil">
 
             </div>
 
@@ -1089,7 +1010,7 @@
 
             <div class="education-card">
 
-                <img class="education-img" src="img/sd.jpg" alt="Foto ilustrasi gedung SD">
+                <img class="education-img" src="assets/img/sd.jpg" alt="Foto ilustrasi gedung SD">
 
                 <div class="education-body">
 
@@ -1113,7 +1034,7 @@
 
             <div class="education-card">
 
-                <img class="education-img" src="img/smp jakarta.png" alt="Foto ilustrasi gedung SMP">
+                <img class="education-img" src="assets/img/smp jakarta.png" alt="Foto ilustrasi gedung SMP">
 
                 <div class="education-body">
 
@@ -1137,7 +1058,7 @@
 
             <div class="education-card">
 
-                <img class="education-img" src="img/LOGO SMKN 1 RONGGA.jpg" alt="Foto SMK Negeri 1 Rongga">
+                <img class="education-img" src="assets/img/LOGO SMKN 1 RONGGA.jpg" alt="Foto SMK Negeri 1 Rongga">
 
                 <div class="education-body">
 
@@ -1178,7 +1099,7 @@
 
                 <div class="family-img">
 
-                    <img src="img/pow pow.jpeg" alt="Foto Keluarga">
+                    <img src="assets/img/pow pow.jpeg" alt="Foto Keluarga">
 
                 </div>
 
@@ -1286,7 +1207,7 @@
 
                 <div class="project-img">
 
-                    <img src="img/novel khusus untuk ayah.png" alt="Proyek Toko Buku">
+                    <img src="assets/img/novel khusus untuk ayah.png" alt="Proyek Toko Buku">
 
                 </div>
 
@@ -1318,7 +1239,7 @@
 
                 <div class="project-img">
 
-                    <img src="img/RASTHA.jpeg" alt="proyek Koleksi foto">
+                    <img src="assets/img/RASTHA.jpeg" alt="proyek Koleksi foto">
 
                 </div>
 
@@ -1396,7 +1317,7 @@
                     <a href="https://www.instagram.com/its.rizz.1?stkn=MWpna211cGFwbDFpNw==/" target="_blank"
                         rel="noopener noreferrer" class="social-card">
 
-                        <img src="img/Instagram_icon.png" alt="Instagram">
+                        <img src="assets/img/Instagram_icon.png" alt="Instagram">
 
                         <div>
 
@@ -1415,7 +1336,7 @@
 
                     <a href="https://wa.me/6283190112974" target="_blank" rel="noopener noreferrer" class="social-card">
 
-                        <img src="img/wa.jpg" alt="WhatsApp">
+                        <img src="assets/img/wa.jpg" alt="WhatsApp">
 
                         <div>
 
@@ -1435,7 +1356,7 @@
                     <a href="https://www.tiktok.com/@_jul347?_r=1&_t=ZS-9A9gJn1eO9N" target="_blank"
                         rel="noopener noreferrer" class="social-card">
 
-                        <img src="img/logo toktok.avif" alt="TikTok">
+                        <img src="assets/img/logo toktok.avif" alt="TikTok">
 
                         <div>
 
@@ -1444,7 +1365,7 @@
                             </strong>
 
                             <span>
-                                @mek
+                                @_jul347
                             </span>
 
                         </div>
@@ -1454,7 +1375,7 @@
 
                     <a href="https://t.me/saepul" target="_blank" rel="noopener noreferrer" class="social-card">
 
-                        <img src="img/twitter-logo_1080029-97.avif" alt="Telegram">
+                        <img src="assets/img/twitter-logo_1080029-97.avif" alt="Telegram">
 
                         <div>
 
@@ -1494,3 +1415,5 @@
 </body>
 
 </html>
+
+```
